@@ -1,0 +1,23 @@
+{% load static %}
+<html>
+  <head>
+    <!-- link del css con el diseño de la barra lateral-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+  </head>
+  <body>
+    <!-- Comienzo barra lateral izquierda -->
+    <div id="side-menu">
+        <div id="side-menu">
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+    <!-- Final barra lateral izquierda -->
+    </div>
+    <div id="content">
+      {% block content %}{% endblock %}
+    </div>
+  </body>
+</html>
