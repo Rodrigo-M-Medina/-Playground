@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+
+    {% block titulohead %}<!--Bloqueo para el titulo de la pagina para poder editarlo en cualquier pagina-->
+    <title>Titulo</title>
+    {% endblock %}<!-- Fin del bloqueo titulohead-->
+
+    <!--Links de archivos statics css-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/Base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/LR.css' %}">
+
+  </head>
+
+  <body>
+
+    <header>
+      {% block titulo %}<!--Bloqueo del titulo principal de la pagina se encuentra en la esquina superior izquierda-->
+      <h1>TITULO</h1>
+      {% endblock %}<!--fin del block titulo-->
+
+      <nav>
+        <ul>
+          {% block barra_superior %} <!--Bloquea lo que esta debajo del titulo-->
+          {% endblock %}<!--fin de Bloqueo barra superior-->
+        </ul>
+      </nav>
+
+    </header>
+
+    <main>
+      {% block centro %}<!-- Bloqueo para agregar todo lo que esta entre la barra superior y el copyright-->
+      {% endblock %}<!-- fin de bloqueo del centro -->
+    </main>
+
+    <footer><!--contenido dentro de la barra oscura de la pagina su edicion esta en css con forter-->
+      <p>Copyright rodrigomedina</p>
+    </footer>
+  </body>
+
+</html>

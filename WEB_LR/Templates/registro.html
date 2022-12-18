@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block titulohead %}
+<title>REGISTRO</title>
+{% endblock %}
+
+
+{% block titulo %}
+<h1>REGISTRARSE</h1>
+{% endblock %}
+
+{% block barra_superior %}
+<li><a href={% url 'inicio' %}>inicio</a></li>
+<li><a href={% url 'ingreso' %}>iniciar sesion</a></li>
+<h2>{{ mensaje }}</h2>
+{% endblock %}
+
+
+{% block centro %}
+<form action="{% url 'registro' %}" method="POST"> {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+
+    </table>
+    <input type="submit" value="Registrar Usuario">
+</form>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block titulohead %}
+<title>INICIO</title>
+{% endblock %}
+
+
+{% block titulo %}
+<H1>PAGINA DE INICIO</H1>
+{% endblock %}
+
+{% block barra_superior %}
+<li><a href={% url 'ingreso' %}>iniciar sesion</a></li>
+<li><a href={% url 'registro' %}>registrarse</a></li>
+{% endblock %}
+
+
+{% block centro %}
+<h1>{{ mensaje }}</h1>
+{% endblock %}
