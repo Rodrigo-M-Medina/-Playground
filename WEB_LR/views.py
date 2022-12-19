@@ -4,16 +4,12 @@ from django.contrib.auth import login, authenticate, logout
 from django.shortcuts import render
 #import de forms de Datos
 from WEB_LR.forms import RegistroUsuario, IngresoUsuario
+from WEB_BLOG.views import blog
 
 
 #---------- pagina de inicio ----------------
 def inicio(request):
     return render(request, "pagina_inicio.html")
-#---------- pagina del blog ----------------
-
-def blog(request):
-    return render(request, "blog.html")
-
 #---------- pagina de registro ----------------
 def registro(request):
     if request.method=="POST":
@@ -42,7 +38,7 @@ def ingreso(request):
             usuario=authenticate(username=usu, password=clave)
             if usuario is not None:    
                 login(request, usuario)
-                return render(request, 'blog.html', {'mensaje':f"Bienvenido {usuario}" })
+                return blog(request, usuario)
             else:
                 return render(request, 'ingreso.html', {'mensaje':"Usuario o contraseña incorrectos", 'form':form})
 
@@ -57,4 +53,4 @@ def ingreso(request):
 
 def desconectarse(request):
     logout(request)
-    return render(request, "Inicio.html", {"mensaje": "Usted se ha desconectado"})
+    return render(request, "pagina_inicio.html")
