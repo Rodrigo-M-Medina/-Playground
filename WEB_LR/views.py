@@ -1,5 +1,5 @@
 #import para login
-from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth import login, authenticate
 #import para render
 from django.shortcuts import render
 #import de forms de Datos
@@ -50,7 +50,3 @@ def ingreso(request):
     return render(request, 'ingreso.html', {"form":form})
 
 #---------- funcion desconectarse ----------------
-
-def desconectarse(request):
-    logout(request)
-    return render(request, "pagina_inicio.html")
