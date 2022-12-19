@@ -1,5 +1,4 @@
 #import para login
-from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
 #import para render
 from django.shortcuts import render

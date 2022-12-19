@@ -1,39 +1,31 @@
-header {
+/* pie de la pagina */
+footer {
+  /* posicion */
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  /* fondo, color de texto y su posicion */
   background-color: #333;
-  color: #fff;
-  padding: 20px;
+  color: white;
+  text-align: center;
 }
-
-header h1 {
-  margin: 0;
-  font-size: 24px;
+/* div de titulos para el centro */
+#titulos {
+  position: absolute;
+  left: 300px;
+  top: 200px;
+  float: left;
 }
-
-header nav ul {
-  list-style: none;
+/* id de mi imagen en el body para el fondo*/
+#imagen{
+  position: fixed;
+  width: 100vw;
+  height: 100vh; 
+}
+/* body para rellenar toda la pagina sin margenes */
+body{
   margin: 0;
   padding: 0;
-  display: flex;
-}
-
-header nav li {
-  margin-right: 20px;
-}
-
-header nav a {
-  color: #fff;
-  text-decoration: none;
-}
-
-main {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-footer {
-  background-color: #333;
-  color: #fff;
-  padding: 20px;
-  text-align: center;
+  border: 0;
 }

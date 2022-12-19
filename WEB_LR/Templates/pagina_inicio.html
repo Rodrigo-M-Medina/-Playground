@@ -6,15 +6,14 @@
 
 
 {% block titulo %}
-<H1>PAGINA DE INICIO</H1>
+<h1 id="TituloBase">PAGINA DE INICIO</h1>
 {% endblock %}
 
-{% block barra_superior %}
-<li><a href={% url 'ingreso' %}>iniciar sesion</a></li>
-<li><a href={% url 'registro' %}>registrarse</a></li>
-{% endblock %}
 
 
 {% block centro %}
-<h1>{{ mensaje }}</h1>
+  <form>
+    <button id="boton1" type="submit" formaction="{% url 'ingreso' %}">Ingresar</button>
+    <button type="submit" formaction="{% url 'registro' %}">Registrarse</button>
+  </form>
 {% endblock %}
