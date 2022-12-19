@@ -19,7 +19,7 @@ def registro(request):
     if request.method=="POST":
         form=RegistroUsuario(request.POST)
         if form.is_valid():
-            username=form.cleaned_data.get("username")
+            username=form.cleaned_data.get("username")# ver porque queda de ese color user name!!!
             form.save()
 
             return render(request, "pagina_inicio.html")
