@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+  <head>
+    {% block titulohead %}<!--Bloqueo para el titulo de la pagina para poder editarlo en cualquier pagina-->
+    <title>Titulo</title>
+    {% endblock %}<!-- Fin del bloqueo titulohead-->
+    <!--Links de archivos statics css-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/blog_base.css' %}">
+<body>
+
+<div id="nav-bar">
+    {% block nav %}
+    <!-- Contenido del nav bar superior -->
+    {% endblock %}
+  </div>
+  
+  <div id="sidebar">
+    <!-- contenido del side bar izquierdo -->
+        {% block side %}
+        <!--
+        {% for option in options %}
+        <li><a href="{{ option.url }}">{{ option.name }}</a></li>
+        {% endfor %}
+        -->
+        {% endblock %}
+  </div>
+  
+  <!-- HTML for the center section -->
+  <div id="center">
+    <!-- Contenido del centro de la pagina -->
+    {% block centro %}
+    {% endblock %}
+  </div>
+
+</body>

@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_inicio.html" %}
 
 {% block titulohead %}
 <title>INICIO</title>
@@ -12,7 +12,7 @@
 
 
 {% block centro %}
-  <form>
+  <form> {% csrf_token %}
     <button id="boton1" type="submit" formaction="{% url 'ingreso' %}">Ingresar</button>
     <button type="submit" formaction="{% url 'registro' %}">Registrarse</button>
   </form>

@@ -1,2 +1,27 @@
-  {{ mensaje }}
+{% extends "base_blog.html" %}
+
+{% block side %}
+<a href={% url 'editarPerfil' %}>
+    <button>Editar Perfil</button>
+</a>
+  <br>
+<a href={% url 'agregarAvatar' %}>
+    <button>agregar avatar</button>
+</a>
+<br>
+
+{% endblock %}
+
+
+{% block nav %}
+<a href={% url 'salir' %}>
+    <button>Salir</button>
+  </a>
+{% endblock %}
+
+
+{% block centro %}
+<h1> {{ avatar }} </h1>
+{% endblock %}
+
 

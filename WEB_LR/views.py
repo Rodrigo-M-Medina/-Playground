@@ -1,15 +1,18 @@
-#import para login
-from django.contrib.auth import login, authenticate
+#import para autenticar, ingresar y desloguear usuario
+from django.contrib.auth import login, authenticate, logout
 #import para render
 from django.shortcuts import render
-#import de forms de Datos
+#import de forms de WEB_LR
 from WEB_LR.forms import RegistroUsuario, IngresoUsuario
+#import de vistar de WEB_BLOG 
 from WEB_BLOG.views import blog
 
 
 #---------- pagina de inicio ----------------
 def inicio(request):
     return render(request, "pagina_inicio.html")
+
+
 #---------- pagina de registro ----------------
 def registro(request):
     if request.method=="POST":
@@ -49,4 +52,9 @@ def ingreso(request):
         form = IngresoUsuario()
     return render(request, 'ingreso.html', {"form":form})
 
+
 #---------- funcion desconectarse ----------------
+
+def salir(request):
+    logout(request)
+    return render(request, "pagina_inicio.html")

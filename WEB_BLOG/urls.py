@@ -1,6 +1,13 @@
 from django.urls import path
-from WEB_BLOG.views import blog
+from WEB_BLOG.views import blog, edicionUsuario, agregarAvatar
+from WEB_LR.views import salir
+
+
 
 urlpatterns = [
-    path('blog/', blog),
+    path('blog1/', blog, name='blog'),
+    path('salir/', salir, name="salir"),
+    path("editarPerfil/", edicionUsuario, name='editarPerfil'),
+
+    path("agregarAvatar/", agregarAvatar, name="agregarAvatar")
 ]
