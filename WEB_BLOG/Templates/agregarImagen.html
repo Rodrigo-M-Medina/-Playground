@@ -1,0 +1,17 @@
+
+
+
+<form action="{% url 'fotoPerfil'  %}" method="POST"  enctype="multipart/form-data"> {% csrf_token %}
+
+    <table>
+    
+        {{ formulario.as_table }}
+    
+    </table>
+    
+    <input type="submit" value="Agregar Imagen">
+    
+    
+    </form>
+
+    {{ mensaje }}

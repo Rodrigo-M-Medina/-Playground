@@ -5,6 +5,15 @@
     <button>Editar Perfil</button>
 </a>
   <br>
+  <a href={% url 'fotoPerfil' %}>
+    <button>agregar Avatar</button>
+</a>
+  <br>
+  <a href={% url 'mostrar' %}>
+    <button>mostrar</button>
+</a>
+  <br>
+
 
 
 {% endblock %}
@@ -18,7 +27,9 @@
 
 
 {% block centro %}
-<h1> {{ avatar }} </h1>
+
+<img height="200px" src="{{ imagen }}" alt="">
+
 {% endblock %}
 
 
