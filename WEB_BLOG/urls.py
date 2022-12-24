@@ -1,5 +1,5 @@
 from django.urls import path
-from WEB_BLOG.views import blog, edicionUsuario, agregarAvatar
+from WEB_BLOG.views import blog, edicionUsuario
 from WEB_LR.views import salir
 
 
@@ -9,5 +9,5 @@ urlpatterns = [
     path('salir/', salir, name="salir"),
     path("editarPerfil/", edicionUsuario, name='editarPerfil'),
 
-    path("agregarAvatar/", agregarAvatar, name="agregarAvatar")
+
 ]

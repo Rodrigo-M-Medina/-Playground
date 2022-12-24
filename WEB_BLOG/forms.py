@@ -14,6 +14,4 @@ class EditarUsuario(UserCreationForm):
         fields = ["username", "password1", "password2"]
         help_texts = {k:"" for k in fields}#para cada uno de los campos del formulario, le asigna un valor vacio 
 
-class AvatarForm(forms.Form):
-    imagen=forms.ImageField(label="Imagen")
 

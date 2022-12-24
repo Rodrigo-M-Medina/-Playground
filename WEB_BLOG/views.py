@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from WEB_BLOG.forms import EditarUsuario, AvatarForm
-from WEB_BLOG.models import Avatar
+from WEB_BLOG.forms import EditarUsuario
+
 
 
 
@@ -31,37 +31,4 @@ def edicionUsuario(request):
         form=EditarUsuario(instance=usuario)
         return render(request, "editar_perfil.html", {"form":form, "nombreusuario":usuario.username})
 
-
-
-
-def agregarAvatar(request):
-    lista=Avatar.objects.filter(user=request.user)
-    if request.method=="POST":
-        form=AvatarForm(request.POST, request.FILES)#ademas del post, como trae archivos (yo se que trae archivos xq conozco el form, tengo q usar request.files)
-        if form.is_valid():
-            avatarViejo=Avatar.objects.filter(user=request.user)
-            if len(avatarViejo)!=0:
-                avatarViejo[0].delete()
-            avatar=Avatar(user=request.user, imagen=request.FILES["imagen"])
-            avatar.save()
-            return render(request, "inicio1.html", {"mensaje":"Avatar agregado correctamente", "imagen":obtenerAvatar(request)})
-        else:
-            return render(request, "add_avatar.html", {"formulario": form, "usuario": request.user})
-    else:
-        form=AvatarForm()
-        return render(request , "add_avatar.html", {"formulario": form, "usuario": request.user})
-
-def obtenerAvatar(request):
-    lista=Avatar.objects.filter(user=request.user)
-    if len(lista)!=0:
-        imagen=lista[0].imagen.url
-    else:
-        imagen="/media/avatares/avatarpordefecto.png"
-    return imagen
-
-def mostrarAvatar(request):
-
-  lista=Avatar.objects.filter(user=request.user)
-
-  return render (request, "inicio1.html", {"imagen":obtenerAvatar(request)})
 
