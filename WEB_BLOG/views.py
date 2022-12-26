@@ -1,12 +1,35 @@
 from django.shortcuts import render
 from WEB_BLOG.forms import EditarUsuario, ImagenPerfilForm
-from WEB_BLOG.models import ImagenPerfil
+from WEB_BLOG.models import ImagenPerfil, Posteo
 
 
 
 #------- pagina a la que se ingresa por medio del login de WEB_LR --------
 def blog(request, usuario):
     return render (request, "blog.html", {"mensaje": f"bienvenido{usuario}", "imagen":mostrarImagen(request)})
+
+
+
+#------------- Buscar Posteos -------------------
+
+def Titulos(request):
+    return render(request, "busqueda.html.html")
+
+def mostrar(request):
+    var1=Posteo.objects.all()
+    return render(request,"resultados.html", {"resultado":var1})
+
+
+'''def buscar(request):
+    if "titulo" in (request.GET):
+        var1=request.GET ["titulo"]
+        resultado=Posteo.objects.filter(titulo__icontains=var1)
+        imagen=mostrarPost("titulo")
+        return render(request,"resultados.html", {"resultado":resultado}, {"imagen":imagen})
+    else:
+        return render(request, "busqueda.html", {"mensaje":"no se encontro el post"})'''
+
+
 
 #-------  FUNCION PARA AGREGAR IMAGEN ---------
 
@@ -35,6 +58,8 @@ def mostrarImagen(request):
     else:
         imagen="/media/avatares/avatarpordefecto.png"
     return imagen
+
+
 
 
 #-------  EDICION DE DATOS DEL USUARIO LOGUEADO ---------

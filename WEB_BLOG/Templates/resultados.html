@@ -1,0 +1,15 @@
+
+{% if resultado %}
+<ul>
+    {% for resultado in resultado %}
+        <li>{{ resultado.titulo }}</li>
+        <p>{{ resultado.descripcion }}</p>
+        <img src="{{ resultado.imagen }}" alt="">
+    {% endfor %}
+</ul>
+
+{% else %}
+
+<p> no existe ese titulo</p>
+
+{% endif %}

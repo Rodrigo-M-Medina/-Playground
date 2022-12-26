@@ -17,3 +17,9 @@ class EditarUsuario(UserCreationForm):
 class ImagenPerfilForm(forms.Form):
     imagen=forms.ImageField(label="Imagen")
 
+class PosteoForm(forms.Form):
+    titulo=forms.CharField(label="ingrese el titulo")
+    imagen=forms.ImageField(label="Imagen")
+    descripcion=forms.CharField(label="descripcion")
+
+
