@@ -12,22 +12,13 @@ def blog(request, usuario):
 
 #------------- Buscar Posteos -------------------
 
-def Titulos(request):
-    return render(request, "busqueda.html.html")
-
-def mostrar(request):
-    var1=Posteo.objects.all()
-    return render(request,"resultados.html", {"resultado":var1})
-
-
-'''def buscar(request):
+def buscar(request):
     if "titulo" in (request.GET):
         var1=request.GET ["titulo"]
         resultado=Posteo.objects.filter(titulo__icontains=var1)
-        imagen=mostrarPost("titulo")
-        return render(request,"resultados.html", {"resultado":resultado}, {"imagen":imagen})
+        return render(request,"resultados.html", {"resultado":resultado})
     else:
-        return render(request, "busqueda.html", {"mensaje":"no se encontro el post"})'''
+        return render(request, "busqueda.html")
 
 
 
