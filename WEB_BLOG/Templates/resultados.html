@@ -3,9 +3,9 @@
 <ul>
     {% for resultado in resultado %}
         <li>{{ resultado.titulo }}</li>
-        <p>{{ resultado.descripcion }}</p>
-        <img src={{ resultado.imagen.url }} alt="imagen">
-        <li>Posteo creado por {{ resultado.user }}</li>
+        <p>{{ resultado.descripcion | safe }}</p>
+        <img height="400px" src={{ resultado.imagen.url }} alt="imagen">
+        <li>Posteo creado por {{ resultado.usuario }}</li>
     {% endfor %}
 </ul>
 

@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     #Apps Creadas y instaladas
     'WEB_LR',
     'WEB_BLOG',
+    #COSA INSTALADA
+    'ckeditor',
 ]
 
 MIDDLEWARE = [

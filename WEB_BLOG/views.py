@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from WEB_BLOG.forms import EditarUsuario, ImagenPerfilForm
+from WEB_BLOG.forms import EditarUsuario, ImagenPerfilForm, PosteoForm
 from WEB_BLOG.models import ImagenPerfil, Posteo
 
 
@@ -10,7 +10,26 @@ def blog(request, usuario):
 
 
 
-#------------- Buscar Posteos -------------------
+#------------- Buscar Posteos Y Crear Posteos -------------------
+
+def crearPost(request):
+    if request.method=="POST":
+        form=PosteoForm(request.POST, request.FILES)
+        
+        if form.is_valid():
+            titulo=form.cleaned_data["titulo"]
+            descripcion=form.cleaned_data["descripcion"]
+            imagen=form.cleaned_data["imagen"]
+            posteo=Posteo(titulo=titulo, descripcion=descripcion, imagen=imagen, usuario=request.user)
+            posteo.save()
+            return render(request, "blog.html")
+    else:
+        form=PosteoForm()
+        return render(request, "agregarPosteo.html", {"form":form})
+            
+
+
+        
 
 def buscar(request):
     if "titulo" in (request.GET):
