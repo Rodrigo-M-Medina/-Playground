@@ -4,8 +4,9 @@ from django.contrib.auth import login, authenticate, logout
 from django.shortcuts import render
 #import de forms de WEB_LR
 from WEB_LR.forms import RegistroUsuario, IngresoUsuario
-#import de vistar de WEB_BLOG 
+#import  vistas de WEB_BLOG 
 from WEB_BLOG.views import blog
+
 
 
 #---------- pagina de inicio ----------------
@@ -41,7 +42,7 @@ def ingreso(request):
             usuario=authenticate(username=usu, password=clave)
             if usuario is not None:    
                 login(request, usuario)
-                return blog(request, usuario)
+                return blog(request)
             else:
                 return render(request, 'ingreso.html', {'mensaje':"Usuario o contraseña incorrectos", 'form':form})
 

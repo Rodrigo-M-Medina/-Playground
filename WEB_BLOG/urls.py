@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from WEB_BLOG.views import blog, edicionUsuario, fotoPerfil, buscar, crearPost
 from WEB_LR.views import salir
 

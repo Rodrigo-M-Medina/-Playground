@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import  UserCreationForm
 
-
+#----------------form para editar el usuario --------------------------------
 
 class EditarUsuario(UserCreationForm):
     username=forms.CharField(label="Ingrese Usuario")
@@ -14,8 +14,12 @@ class EditarUsuario(UserCreationForm):
         fields = ["username", "password1", "password2"]
         help_texts = {k:"" for k in fields}#para cada uno de los campos del formulario, le asigna un valor vacio 
 
+#---------- form para cargar imagenes al perfil --------------------------
+
 class ImagenPerfilForm(forms.Form):
     imagen=forms.ImageField(label="Imagen")
+
+#--------------------- post para crear posteos desde ------------
 
 class PosteoForm(forms.Form):
     titulo=forms.CharField(label="ingrese el titulo")

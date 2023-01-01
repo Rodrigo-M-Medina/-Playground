@@ -8,6 +8,7 @@
     {% endblock %}<!-- Fin del bloqueo titulohead-->
     <!--Links de archivos statics css-->
     <link rel="stylesheet" type="text/css" href="{% static 'css/blog_base.css' %}">
+  </head>
 <body>
 
 <div id="nav-bar">
@@ -19,11 +20,6 @@
   <div id="sidebar">
     <!-- contenido del side bar izquierdo -->
         {% block side %}
-        <!--
-        {% for option in options %}
-        <li><a href="{{ option.url }}">{{ option.name }}</a></li>
-        {% endfor %}
-        -->
         {% endblock %}
   </div>
   

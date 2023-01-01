@@ -1,14 +1,15 @@
 from django.shortcuts import render
 from WEB_BLOG.forms import EditarUsuario, ImagenPerfilForm, PosteoForm
 from WEB_BLOG.models import ImagenPerfil, Posteo
+from django.contrib.auth.models import User
+
 
 
 
 #------- pagina a la que se ingresa por medio del login de WEB_LR --------
-def blog(request, usuario):
+def blog(request):
+    usuario=request.user
     return render (request, "blog.html", {"mensaje": f"bienvenido{usuario}", "imagen":mostrarImagen(request)})
-
-
 
 #------------- Buscar Posteos Y Crear Posteos -------------------
 
@@ -26,8 +27,19 @@ def crearPost(request):
     else:
         form=PosteoForm()
         return render(request, "agregarPosteo.html", {"form":form})
-            
 
+def editPost(request):
+    if "titulo" in (request.GET):
+        var1=request.GET ["titulo"]
+        resultado=Posteo.objects.filter(titulo__icontains=var1)
+        if request.method == "POST":
+            form = PosteoForm(request.POST, request.FILES, instance=resultado)
+            if form.is_valid():
+                form.save()
+                return render(request, "blog.html")
+        else:
+            form = PosteoForm(instance=resultado)
+            return render(request, "editPost.html", {"form": form})
 
         
 
@@ -38,7 +50,6 @@ def buscar(request):
         return render(request,"resultados.html", {"resultado":resultado})
     else:
         return render(request, "busqueda.html")
-
 
 
 #-------  FUNCION PARA AGREGAR IMAGEN ---------
@@ -68,8 +79,6 @@ def mostrarImagen(request):
     else:
         imagen="/media/avatares/avatarpordefecto.png"
     return imagen
-
-
 
 
 #-------  EDICION DE DATOS DEL USUARIO LOGUEADO ---------
