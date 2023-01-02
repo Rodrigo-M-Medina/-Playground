@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import  UserCreationForm
 from WEB_BLOG.models import *
 
+#---------------form de mensajes------------------
+
 class MensajeForm(forms.ModelForm):#solo necesito traer por meta el model Chat y sus field 
     class Meta:
         model = Chat

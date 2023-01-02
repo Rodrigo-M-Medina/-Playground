@@ -4,26 +4,21 @@ from WEB_BLOG.models import ImagenPerfil, Posteo, Chat
 from django.contrib.auth.models import User
 
 #------------------ prueba de chat--------------------- por ahora funcional
+
 def MandarMensajes(request):# por ahora solo puedo mandar mensajes desde un opcion de mensajes 
     if request.method == 'POST':
         form = MensajeForm(request.POST)
         if form.is_valid():
             # Guardando mensaje en la base de datos
-            mensaje = form.save(commit=False)#commit false? se supone que es un booleano
+            mensaje = form.save(commit=False)#commit false? se supone que es un booleano que me deja ver el mensaje antes de guardar
             mensaje.salida = request.user
             mensaje.save()
-            return render(request, 'mandarMensajes.html', {'form': form})
+            mensajes = Chat.objects.all()  # obtengo todos los mensajes del modelo chat correjir
+            return render(request, 'mandarMensajes.html', {'form': form, 'mensajes': mensajes})
     else:
         form = MensajeForm()
-    return render(request, 'mandarMensajes.html', {'form': form})
-
-def verMensajes(request):
-    entrada = request.GET.get('entrada')
-    if entrada:#se suponia que el if me iba a dejar seleccionar el chat de mensajes
-        mensajes = Chat.objects.filter(entrada=entrada, salida=request.user) | Chat.objects.filter(entrada=request.user, salida=entrada)
-    else:
-        mensajes = Chat.objects.filter(entrada=request.user).order_by('-tiempo')
-    return render(request, 'verMensajes.html', {'mensajes': mensajes})
+        mensajes = Chat.objects.all()  # obtengo todos los mensajes del modelo chat correjir
+    return render(request, 'mandarMensajes.html', {'form': form, 'mensajes': mensajes})
 
 #------- pagina a la que se ingresa por medio del login de WEB_LR --------
 def blog(request):
