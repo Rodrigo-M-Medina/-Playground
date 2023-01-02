@@ -1,5 +1,20 @@
+{% extends "base_blog.html" %}
+
+{% block side %}
 
 
+{% endblock %}
+
+
+
+{% block nav %}
+<a href={% url 'blog' %}>
+    <button>inico</button>
+</a>
+
+{% endblock %}
+
+{% block centro %}
 
 <form action="{% url 'crear'  %}" method="POST"  enctype="multipart/form-data"> {% csrf_token %}
 
@@ -13,3 +28,6 @@
     
     
     </form>
+
+
+{% endblock %}

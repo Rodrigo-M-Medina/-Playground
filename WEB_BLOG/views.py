@@ -1,15 +1,34 @@
 from django.shortcuts import render
-from WEB_BLOG.forms import EditarUsuario, ImagenPerfilForm, PosteoForm
-from WEB_BLOG.models import ImagenPerfil, Posteo
+from WEB_BLOG.forms import EditarUsuario, ImagenPerfilForm, PosteoForm, MensajeForm
+from WEB_BLOG.models import ImagenPerfil, Posteo, Chat
 from django.contrib.auth.models import User
 
+#------------------ prueba de chat--------------------- por ahora funcional
+def MandarMensajes(request):# por ahora solo puedo mandar mensajes desde un opcion de mensajes 
+    if request.method == 'POST':
+        form = MensajeForm(request.POST)
+        if form.is_valid():
+            # Guardando mensaje en la base de datos
+            mensaje = form.save(commit=False)#commit false? se supone que es un booleano
+            mensaje.salida = request.user
+            mensaje.save()
+            return render(request, 'mandarMensajes.html', {'form': form})
+    else:
+        form = MensajeForm()
+    return render(request, 'mandarMensajes.html', {'form': form})
 
-
+def verMensajes(request):
+    entrada = request.GET.get('entrada')
+    if entrada:#se suponia que el if me iba a dejar seleccionar el chat de mensajes
+        mensajes = Chat.objects.filter(entrada=entrada, salida=request.user) | Chat.objects.filter(entrada=request.user, salida=entrada)
+    else:
+        mensajes = Chat.objects.filter(entrada=request.user).order_by('-tiempo')
+    return render(request, 'verMensajes.html', {'mensajes': mensajes})
 
 #------- pagina a la que se ingresa por medio del login de WEB_LR --------
 def blog(request):
     usuario=request.user
-    return render (request, "blog.html", {"mensaje": f"bienvenido{usuario}", "imagen":mostrarImagen(request)})
+    return render (request, "blog.html", {"mensaje": f"bienvenido {usuario}", "imagen":mostrarImagen(request)})
 
 #------------- Buscar Posteos Y Crear Posteos -------------------
 
@@ -28,20 +47,6 @@ def crearPost(request):
         form=PosteoForm()
         return render(request, "agregarPosteo.html", {"form":form})
 
-def editPost(request):
-    if "titulo" in (request.GET):
-        var1=request.GET ["titulo"]
-        resultado=Posteo.objects.filter(titulo__icontains=var1)
-        if request.method == "POST":
-            form = PosteoForm(request.POST, request.FILES, instance=resultado)
-            if form.is_valid():
-                form.save()
-                return render(request, "blog.html")
-        else:
-            form = PosteoForm(instance=resultado)
-            return render(request, "editPost.html", {"form": form})
-
-        
 
 def buscar(request):
     if "titulo" in (request.GET):

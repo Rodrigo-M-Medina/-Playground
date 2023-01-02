@@ -1,5 +1,5 @@
-from django.urls import path, include
-from WEB_BLOG.views import blog, edicionUsuario, fotoPerfil, buscar, crearPost
+from django.urls import path
+from WEB_BLOG.views import blog, edicionUsuario, fotoPerfil, buscar, crearPost, MandarMensajes, verMensajes
 from WEB_LR.views import salir
 
 
@@ -11,4 +11,6 @@ urlpatterns = [
     path("fotoPerfil/", fotoPerfil, name="fotoPerfil"),
     path("buscar/", buscar, name="buscar"),
     path("crear/", crearPost, name="crear"),
+    path("chat/", MandarMensajes, name="chat"),
+    path("mensajes/", verMensajes, name="mensajes"),
 ]
